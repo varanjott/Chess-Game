@@ -1,0 +1,171 @@
+/* Individual chess square styling */
+.square {
+  display: flex; /* Flex container */
+  justify-content: center; /* Center piece horizontally */
+  align-items: center; /* Center piece vertically */
+  flex: 1; /* Take equal space in row */
+  cursor: pointer; /* Pointer cursor for interaction */
+  position: relative; /* For absolute positioned children */
+  transition: all 0.2s ease; /* Smooth transitions */
+  height: 60px; /* Fixed height */
+  width: 60px; /* Fixed width */
+  overflow: hidden; /* Hide overflow */
+}
+
+/* Mobile responsive - smaller squares */
+@media (max-width: 500px) {
+  .square {
+    height: 40px; /* Smaller height */
+    width: 40px; /* Smaller width */
+  }
+}
+
+/* Light square coloring (cream/beige) */
+.light-square {
+  background-color: #f0d9b5; /* Light beige color */
+}
+
+/* Dark square coloring (green) */
+.dark-square {
+  background-color: #8ca662; /* Dark green color */
+}
+
+/* Hover effects for squares when not selected */
+.square:hover.light-square:not(.selected) {
+  background-color: #f5e4c8; /* Slightly lighter on hover */
+}
+
+.square:hover.dark-square:not(.selected) {
+  background-color: #9cb475; /* Slightly lighter on hover */
+}
+
+/* Selected square highlighting */
+.selected {
+  box-shadow: 0 0 0 4px rgba(115, 137, 174, 0.6); /* Blue outline */
+  z-index: 10; /* Bring to front */
+}
+
+/* Valid move square styling */
+.valid-move {
+  position: relative; /* For move indicator positioning */
+}
+
+/* Valid move hover effect */
+.valid-move:hover {
+  background-color: rgba(174, 192, 218, 0.7); /* Blue tint on hover */
+}
+
+/* Capture move square styling */
+.capture-move {
+  position: relative; /* For capture indicator positioning */
+}
+
+/* Capture move indicator - pulsing red border */
+.capture-move::before {
+  content: ""; /* Empty content for pseudo-element */
+  position: absolute; /* Absolute positioning */
+  top: 0; /* Top edge */
+  left: 0; /* Left edge */
+  right: 0; /* Right edge */
+  bottom: 0; /* Bottom edge */
+  border: 3px solid rgba(255, 0, 0, 0.5); /* Red border */
+  border-radius: 50%; /* Circular border */
+  pointer-events: none; /* Don't interfere with clicks */
+  animation: pulse 2s infinite; /* Pulsing animation */
+}
+
+/* Pulse animation for capture indicator */
+@keyframes pulse {
+  0% {
+    transform: scale(0.95); /* Start slightly smaller */
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.3); /* No shadow */
+  }
+
+  70% {
+    transform: scale(1); /* Scale to normal size */
+    box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); /* Expanding shadow */
+  }
+
+  100% {
+    transform: scale(0.95); /* Back to smaller */
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); /* No shadow */
+  }
+}
+
+/* Move indicator dot for valid moves */
+.move-indicator {
+  width: 24px; /* Dot width */
+  height: 24px; /* Dot height */
+  border-radius: 50%; /* Circular dot */
+  background-color: rgba(0, 0, 0, 0.25); /* Semi-transparent black */
+  position: absolute; /* Absolute positioning */
+  animation: fadeIn 0.3s ease; /* Fade in animation */
+}
+
+/* Fade in animation for move indicators */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Start transparent */
+    transform: scale(0.8); /* Start smaller */
+  }
+  to {
+    opacity: 1; /* End opaque */
+    transform: scale(1); /* End normal size */
+  }
+}
+
+/* Maintain original colors for selected squares */
+.light-square.selected {
+  background-color: #f0d9b5; /* Keep original light color */
+}
+
+.dark-square.selected {
+  background-color: #8ca662; /* Keep original dark color */
+}
+
+/* King in check highlighting - red background with pulsing */
+.in-check {
+  background-color: #ff6b6b !important; /* Red background (important to override) */
+  animation: checkPulse 1.5s infinite; /* Pulsing animation */
+}
+
+/* Check pulse animation */
+@keyframes checkPulse {
+  0% {
+    background-color: #ff6b6b; /* Start red */
+  }
+  50% {
+    background-color: #ff8a8a; /* Lighter red */
+  }
+  100% {
+    background-color: #ff6b6b; /* Back to red */
+  }
+}
+
+/* Check highlighting for light squares */
+.in-check.light-square {
+  background-color: #ff8a8a !important; /* Lighter red for light squares */
+}
+
+/* Check highlighting for dark squares */
+.in-check.dark-square {
+  background-color: #ff5252 !important; /* Darker red for dark squares */
+}
+
+/* Last move highlighting */
+.last-move {
+  position: relative; /* For pseudo-element positioning */
+}
+
+/* Last move indicator - golden border */
+.last-move::after {
+  content: ""; /* Empty content */
+  position: absolute; /* Absolute positioning */
+  top: 0; /* Top edge */
+  left: 0; /* Left edge */
+  right: 0; /* Right edge */
+  bottom: 0; /* Bottom edge */
+  border: 3px solid rgba(255, 215, 0, 0.6); /* Golden border */
+  pointer-events: none; /* Don't interfere with clicks */
+  animation: fadeIn 0.5s ease; /* Fade in animation */
+}

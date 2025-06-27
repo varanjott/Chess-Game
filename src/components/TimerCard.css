@@ -1,0 +1,116 @@
+/* Timer card container - displays player timers */
+.timer-card {
+  background: white; /* White background */
+  border-radius: 1rem; /* Rounded corners */
+  padding: 28px 24px; /* Vertical and horizontal padding */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 0 5px 10px rgba(0, 0, 0, 0.02); /* Layered shadows */
+  display: flex; /* Flex container */
+  flex-direction: column; /* Stack children vertically */
+  gap: 16px; /* Space between children */
+  width: 100%; /* Full width on mobile */
+  transition: all 0.3s ease; /* Smooth transitions */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* Subtle border */
+  backdrop-filter: blur(4px); /* Backdrop blur effect */
+}
+
+/* Hover effect for timer card */
+.timer-card:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08), 0 10px 15px rgba(0, 0, 0, 0.03); /* Enhanced shadow */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Fixed width on desktop */
+@media (min-width: 1024px) {
+  .timer-card {
+    width: 250px; /* Fixed width on large screens */
+  }
+}
+
+/* Individual timer panel styling */
+.timer-panel {
+  background: linear-gradient(to right, #f8f9fa, #f1f3f5); /* Subtle gradient */
+  border-radius: 12px; /* Rounded corners */
+  padding: 16px; /* Internal padding */
+  margin: 0; /* No margin */
+  border: 1px solid #e9ecef; /* Light border */
+  transition: all 0.3s ease; /* Smooth transitions */
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03); /* Inset shadow for depth */
+}
+
+/* Active player timer styling - highlighted */
+.timer-panel.active-player {
+  border: 2px solid #4caf50; /* Green border for active player */
+  background: linear-gradient(to right, #f1f8e9, #e8f5e9); /* Green tinted background */
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.15); /* Green glow effect */
+}
+
+/* Timer label styling */
+.timer-label {
+  font-size: 1.1rem; /* Slightly larger text */
+  font-weight: 600; /* Semi-bold */
+  text-align: center; /* Center aligned */
+  color: #2d3748; /* Dark gray color */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* System font stack */
+}
+
+/* Timer value styling - monospace for consistent digit width */
+.timer-value {
+  font-family: "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Source Code Pro", "Menlo", "Consolas",
+    "DejaVu Sans Mono", monospace; /* System monospace font stack */
+  font-size: 1.3rem; /* Larger text for time */
+  letter-spacing: 0.5px; /* Slight letter spacing */
+  font-weight: bold; /* Bold font weight */
+}
+
+/* Timer control button styling */
+.timer-button {
+  background: linear-gradient(to right, #4caf50, #43a047); /* Green gradient */
+  color: white; /* White text */
+  padding: 14px; /* Internal padding */
+  width: 100%; /* Full width */
+  font-size: 1rem; /* Standard font size */
+  border-radius: 12px; /* Rounded corners */
+  margin-top: 4px; /* Small top margin */
+  box-shadow: 0 4px 6px rgba(76, 175, 80, 0.2); /* Green shadow */
+  transition: all 0.3s ease; /* Smooth transitions */
+  position: relative; /* For pseudo-element positioning */
+  overflow: hidden; /* Hide overflow for shine effect */
+  border: none; /* Remove default border */
+  cursor: pointer; /* Pointer cursor */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* System font stack */
+}
+
+/* Timer button hover effect */
+.timer-button:hover:not(:disabled) {
+  background: linear-gradient(to right, #43a047, #388e3c); /* Darker green on hover */
+  box-shadow: 0 6px 8px rgba(76, 175, 80, 0.25); /* Enhanced shadow */
+}
+
+/* Timer button active effect */
+.timer-button:active:not(:disabled) {
+  transform: translateY(1px); /* Press down effect */
+  box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2); /* Reduced shadow */
+}
+
+/* Shine effect for timer button */
+.timer-button::after {
+  content: ""; /* Empty content for pseudo-element */
+  position: absolute; /* Absolute positioning */
+  top: -50%; /* Start above button */
+  left: -50%; /* Start left of button */
+  width: 200%; /* Twice the button width */
+  height: 200%; /* Twice the button height */
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0% /* Transparent start */,
+    rgba(255, 255, 255, 0.1) 50% /* Semi-transparent middle */,
+    rgba(255, 255, 255, 0) 100% /* Transparent end */
+  );
+  transform: rotate(45deg); /* Diagonal shine */
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+/* Animate shine effect on hover */
+.timer-button:hover::after {
+  transform: rotate(45deg) translate(50%, 50%); /* Move shine across button */
+}

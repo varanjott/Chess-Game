@@ -1,0 +1,99 @@
+/* Chess board container - holds rank labels and board */
+.chess-board {
+  display: flex; /* Flex container */
+  flex-direction: row; /* Horizontal layout */
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1)); /* Drop shadow for entire board */
+}
+
+/* Rank labels container (8-1 on the left side) */
+.rank-labels {
+  display: flex; /* Flex container */
+  flex-direction: column; /* Vertical stack */
+  justify-content: space-around; /* Even spacing */
+  padding-right: 12px; /* Space between labels and board */
+}
+
+/* Individual rank label styling */
+.rank-label {
+  height: 60px; /* Match square height */
+  display: flex; /* Flex container */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  font-weight: 500; /* Medium weight */
+  color: #4a5568; /* Gray color */
+  flex-shrink: 0; /* Prevent shrinking */
+  font-size: 0.9rem; /* Slightly smaller font */
+  transition: all 0.2s ease; /* Smooth transitions */
+}
+
+/* Board with files container */
+.board-with-files {
+  display: flex; /* Flex container */
+  flex-direction: column; /* Vertical stack */
+}
+
+/* Ensure board has fixed dimensions to prevent layout shifts */
+.board-inner {
+  display: flex; /* Flex container */
+  flex-direction: column; /* Vertical stack of rows */
+  border: 1px solid #cbd5e0; /* Gray border around board */
+  width: 480px; /* Fixed width: 8 squares × 60px */
+  height: 480px; /* Fixed height: 8 squares × 60px */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12); /* Board shadow */
+  flex-shrink: 0; /* Prevent shrinking */
+  border-radius: 4px; /* Slightly rounded corners */
+  overflow: hidden; /* Hide overflow */
+  transition: all 0.3s ease; /* Smooth transitions */
+}
+
+/* Board hover effect - slight scale and enhanced shadow */
+.board-inner:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.16); /* Enhanced shadow */
+  transform: scale(1.01); /* Slight scale up */
+}
+
+/* Individual board row */
+.board-row {
+  display: flex; /* Flex container */
+  height: 60px; /* Fixed height per row */
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* File labels container (a-h at the bottom) */
+.file-labels {
+  display: flex; /* Flex container */
+  justify-content: space-around; /* Even spacing */
+  padding-top: 12px; /* Space between board and labels */
+  height: 30px; /* Fixed height */
+}
+
+/* Individual file label styling */
+.file-label {
+  width: 60px; /* Match square width */
+  text-align: center; /* Center text */
+  font-weight: 500; /* Medium weight */
+  color: #4a5568; /* Gray color */
+  flex-shrink: 0; /* Prevent shrinking */
+  font-size: 0.9rem; /* Slightly smaller font */
+  transition: all 0.2s ease; /* Smooth transitions */
+}
+
+/* Mobile responsive design - smaller board on small screens */
+@media (max-width: 500px) {
+  .board-inner {
+    width: 320px; /* Smaller width: 8 squares × 40px */
+    height: 320px; /* Smaller height: 8 squares × 40px */
+  }
+
+  .board-row {
+    height: 40px; /* Smaller row height */
+  }
+
+  .rank-label {
+    height: 40px; /* Match smaller square height */
+  }
+
+  .file-label {
+    width: 40px; /* Match smaller square width */
+  }
+}

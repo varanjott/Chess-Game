@@ -1,0 +1,153 @@
+/* CSS Reset and Base Styles */
+* {
+  margin: 0; /* Remove default margins */
+  padding: 0; /* Remove default padding */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+/* Body styling with system font stack */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* System font stack for better performance */
+  line-height: 1.6; /* Improve readability */
+  color: #2d3748; /* Default text color */
+}
+
+/* Main app container - centers content and sets background */
+.app {
+  display: flex; /* Use flexbox for layout */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  min-height: 100vh; /* Full viewport height */
+  background: linear-gradient(135deg, #e6f0e9 0%, #d7e6dd 100%); /* Gradient background */
+  padding: 20px; /* Padding around the app */
+}
+
+/* Main chess container - responsive grid layout */
+.chess-container {
+  display: flex; /* Default to flex for mobile */
+  flex-direction: column; /* Stack vertically on mobile */
+  gap: 20px; /* Space between elements */
+  max-width: 1200px; /* Maximum width constraint */
+  width: 100%; /* Full width up to max-width */
+}
+
+/* Tablet layout - use CSS Grid for better control */
+@media (min-width: 768px) {
+  .chess-container {
+    display: grid; /* Switch to grid layout */
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    grid-template-rows: auto auto auto; /* Three rows with auto height */
+    grid-template-areas:
+      "timer controls" /* Timer and controls on top row */
+      "board board" /* Board spans both columns */
+      "ai ai"; /* AI controls span both columns (if needed) */
+    gap: 20px; /* Gap between grid items */
+  }
+
+  /* Assign grid areas to components */
+  .timer-card {
+    grid-area: timer; /* Place in timer area */
+  }
+
+  .board-card {
+    grid-area: board; /* Place in board area */
+  }
+
+  .controls-card {
+    grid-area: controls; /* Place in controls area */
+  }
+
+  .ai-controls {
+    grid-area: ai; /* Place in AI area (if used) */
+  }
+}
+
+/* Desktop layout - horizontal flex layout */
+@media (min-width: 1024px) {
+  .chess-container {
+    display: flex; /* Switch back to flex */
+    flex-direction: row; /* Horizontal layout */
+    align-items: flex-start; /* Align items to top */
+  }
+}
+
+/* Board card styling - contains the chess board */
+.board-card {
+  background: white; /* White background */
+  border-radius: 1rem; /* Rounded corners */
+  padding: 24px; /* Internal padding */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 0 5px 10px rgba(0, 0, 0, 0.02); /* Layered shadows */
+  display: flex; /* Flex container */
+  justify-content: center; /* Center board horizontally */
+  align-items: center; /* Center board vertically */
+  flex-grow: 1; /* Take up available space */
+  transition: all 0.3s ease; /* Smooth transitions */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* Subtle border */
+  backdrop-filter: blur(4px); /* Backdrop blur effect */
+}
+
+/* Hover effect for board card */
+.board-card:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08), 0 10px 15px rgba(0, 0, 0, 0.03); /* Enhanced shadow */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Typography styles */
+h1,
+h2,
+h3 {
+  color: #2d3748; /* Dark gray color */
+  margin: 0 0 15px 0; /* Bottom margin only */
+  font-weight: 600; /* Semi-bold weight */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* System font stack */
+}
+
+/* Button base styles */
+button {
+  cursor: pointer; /* Pointer cursor on hover */
+  border: none; /* Remove default border */
+  border-radius: 8px; /* Rounded corners */
+  font-weight: 600; /* Semi-bold text */
+  transition: all 0.2s ease; /* Smooth transitions */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* System font stack */
+  background: none; /* Remove default background */
+  outline: none; /* Remove default outline */
+}
+
+/* Button hover effect - lift slightly */
+button:hover:not(:disabled) {
+  transform: translateY(-1px); /* Lift up */
+}
+
+/* Button active effect - press down */
+button:active:not(:disabled) {
+  transform: translateY(1px); /* Press down */
+}
+
+/* Disabled button styles */
+button:disabled {
+  opacity: 0.6; /* Reduce opacity */
+  cursor: not-allowed; /* Show not-allowed cursor */
+}
+
+/* Custom scrollbar styles for webkit browsers */
+::-webkit-scrollbar {
+  width: 6px; /* Thin scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f8f9fa; /* Light background */
+  border-radius: 10px; /* Rounded track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cbd5e0; /* Gray thumb */
+  border-radius: 10px; /* Rounded thumb */
+  border: 2px solid #f8f9fa; /* Border around thumb */
+}
+
+/* Firefox scrollbar styles */
+* {
+  scrollbar-width: thin; /* Thin scrollbar */
+  scrollbar-color: #cbd5e0 #f8f9fa; /* Thumb and track colors */
+}
