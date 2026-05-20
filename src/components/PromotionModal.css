@@ -1,0 +1,113 @@
+/* Promotion modal — overlays the whole app while a pawn is on the last rank. */
+
+.promotion-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: promo-fade-in 0.18s ease-out;
+}
+
+@keyframes promo-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.promotion-modal {
+  background: white;
+  border-radius: 1rem;
+  padding: 28px 32px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  max-width: 90vw;
+  animation: promo-slide-up 0.22s ease-out;
+}
+
+@keyframes promo-slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.promotion-title {
+  text-align: center;
+  margin-bottom: 18px;
+  color: #2d3748;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.promotion-options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.promotion-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 10px;
+  background: #f8f9fa;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  min-width: 70px;
+}
+
+.promotion-button:hover:not(:disabled) {
+  background: #e6f0e9;
+  border-color: #95c5a6;
+  transform: translateY(-2px);
+}
+
+.promotion-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.promotion-symbol {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.promotion-white .promotion-symbol {
+  color: #2d3748;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+.promotion-black .promotion-symbol {
+  color: #1a202c;
+}
+
+.promotion-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #4a5568;
+  letter-spacing: 0.3px;
+}
+
+.promotion-cancel {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  color: #718096;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+}
+
+.promotion-cancel:hover {
+  background: #f1f3f5;
+  color: #2d3748;
+}
+
+@media (max-width: 480px) {
+  .promotion-modal { padding: 20px; }
+  .promotion-symbol { font-size: 2rem; }
+  .promotion-button { padding: 10px 6px; min-width: 56px; }
+}

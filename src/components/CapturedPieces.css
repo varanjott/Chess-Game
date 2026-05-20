@@ -1,0 +1,63 @@
+/* Captured pieces row — sits above and below the board. */
+
+.captured-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 32px;
+  padding: 4px 8px;
+  flex-wrap: wrap;
+}
+
+.captured-pieces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.captured-piece {
+  font-size: 1.5rem;
+  line-height: 1;
+  letter-spacing: -6px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.captured-piece:last-child {
+  letter-spacing: 0;
+  margin-right: 6px;
+}
+
+.captured-white {
+  color: #f7fafc;
+  text-shadow: 0 0 1px #4a5568, 0 0 2px #4a5568;
+}
+
+.captured-black {
+  color: #1a202c;
+}
+
+.material-advantage {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #2f855a;
+  background: #f0fff4;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid #c6f6d5;
+  letter-spacing: 0.5px;
+}
+
+/* The board card was previously a single-flex centering container; since
+   we're now stacking captured rows + board + captured rows inside it,
+   override its layout when it has captured rows as children. */
+.board-card {
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 6px;
+}
+
+.board-card > .chess-board {
+  align-self: center;
+}

@@ -1,0 +1,239 @@
+/* Timer card container - displays player timers */
+.timer-card {
+  background: white; /* White background */
+  border-radius: 1rem; /* Rounded corners */
+  padding: 28px 24px; /* Vertical and horizontal padding */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 0 5px 10px rgba(0, 0, 0, 0.02); /* Layered shadows */
+  display: flex; /* Flex container */
+  flex-direction: column; /* Stack children vertically */
+  gap: 16px; /* Space between children */
+  width: 100%; /* Full width on mobile */
+  transition: all 0.3s ease; /* Smooth transitions */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* Subtle border */
+  backdrop-filter: blur(4px); /* Backdrop blur effect */
+}
+
+/* Hover effect for timer card */
+.timer-card:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08), 0 10px 15px rgba(0, 0, 0, 0.03); /* Enhanced shadow */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Fixed width on desktop */
+@media (min-width: 1024px) {
+  .timer-card {
+    width: 250px; /* Fixed width on large screens */
+  }
+}
+
+/* Individual timer panel styling */
+.timer-panel {
+  background: linear-gradient(to right, #f8f9fa, #f1f3f5); /* Subtle gradient */
+  border-radius: 12px; /* Rounded corners */
+  padding: 16px; /* Internal padding */
+  margin: 0; /* No margin */
+  border: 1px solid #e9ecef; /* Light border */
+  transition: all 0.3s ease; /* Smooth transitions */
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03); /* Inset shadow for depth */
+}
+
+/* Active player timer styling - highlighted */
+.timer-panel.active-player {
+  border: 2px solid #4caf50; /* Green border for active player */
+  background: linear-gradient(to right, #f1f8e9, #e8f5e9); /* Green tinted background */
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.15); /* Green glow effect */
+}
+
+/* Timer label styling */
+.timer-label {
+  font-size: 1.1rem; /* Slightly larger text */
+  font-weight: 600; /* Semi-bold */
+  text-align: center; /* Center aligned */
+  color: #2d3748; /* Dark gray color */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* System font stack */
+}
+
+/* Timer value styling - monospace for consistent digit width */
+.timer-value {
+  font-family: "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Source Code Pro", "Menlo", "Consolas",
+    "DejaVu Sans Mono", monospace; /* System monospace font stack */
+  font-size: 1.3rem; /* Larger text for time */
+  letter-spacing: 0.5px; /* Slight letter spacing */
+  font-weight: bold; /* Bold font weight */
+}
+
+/* Timer control button styling */
+.timer-button {
+  background: linear-gradient(to right, #4caf50, #43a047); /* Green gradient */
+  color: white; /* White text */
+  padding: 14px; /* Internal padding */
+  width: 100%; /* Full width */
+  font-size: 1rem; /* Standard font size */
+  border-radius: 12px; /* Rounded corners */
+  margin-top: 4px; /* Small top margin */
+  box-shadow: 0 4px 6px rgba(76, 175, 80, 0.2); /* Green shadow */
+  transition: all 0.3s ease; /* Smooth transitions */
+  position: relative; /* For pseudo-element positioning */
+  overflow: hidden; /* Hide overflow for shine effect */
+  border: none; /* Remove default border */
+  cursor: pointer; /* Pointer cursor */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* System font stack */
+}
+
+/* Timer button hover effect */
+.timer-button:hover:not(:disabled) {
+  background: linear-gradient(to right, #43a047, #388e3c); /* Darker green on hover */
+  box-shadow: 0 6px 8px rgba(76, 175, 80, 0.25); /* Enhanced shadow */
+}
+
+/* Timer button active effect */
+.timer-button:active:not(:disabled) {
+  transform: translateY(1px); /* Press down effect */
+  box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2); /* Reduced shadow */
+}
+
+/* Shine effect for timer button */
+.timer-button::after {
+  content: ""; /* Empty content for pseudo-element */
+  position: absolute; /* Absolute positioning */
+  top: -50%; /* Start above button */
+  left: -50%; /* Start left of button */
+  width: 200%; /* Twice the button width */
+  height: 200%; /* Twice the button height */
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0% /* Transparent start */,
+    rgba(255, 255, 255, 0.1) 50% /* Semi-transparent middle */,
+    rgba(255, 255, 255, 0) 100% /* Transparent end */
+  );
+  transform: rotate(45deg); /* Diagonal shine */
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+/* Animate shine effect on hover */
+.timer-button:hover::after {
+  transform: rotate(45deg) translate(50%, 50%); /* Move shine across button */
+}
+/* Add to the end of src/components/TimerCard.css */
+
+.setup-card {
+  position: relative;
+  z-index: 1;
+}
+
+.setup-card h3 {
+  text-align: center;
+  margin-bottom: 16px;
+  color: #2d3748;
+}
+
+.setup-group {
+  margin-bottom: 12px;
+}
+
+.setup-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #4a5568;
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.button-group button {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.button-group button:hover {
+  background-color: #f1f5f9;
+}
+
+.button-group button.active {
+  background-color: #4caf50;
+  color: white;
+  border-color: #4caf50;
+}
+
+.setup-group select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background-color: white;
+  font-size: 1rem;
+}
+
+.start-button {
+  margin-top: 16px;
+}
+/* ---------- New: time control preset grid ---------- */
+.time-control-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.time-control-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 8px 4px;
+  background: #f8f9fa;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 50px;
+}
+
+.time-control-option:hover:not(.active) {
+  background: #edf2f7;
+}
+
+.time-control-option.active {
+  background: linear-gradient(to right, #f1f8e9, #e8f5e9);
+  border-color: #4caf50;
+  box-shadow: 0 0 0 1px rgba(76, 175, 80, 0.2);
+}
+
+.tc-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #2d3748;
+  letter-spacing: 0.3px;
+}
+
+.tc-detail {
+  font-size: 0.72rem;
+  color: #718096;
+  font-variant-numeric: tabular-nums;
+}
+
+.time-control-badge {
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #4a5568;
+  background: #f1f3f5;
+  padding: 5px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.3px;
+  align-self: center;
+}
